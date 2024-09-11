@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Optional;
 
@@ -23,8 +24,10 @@ public class MemberController {
 
     }
 
+    @ResponseBody
+    @GetMapping("/json")
     public Person json() {
         // TODO: /json 요청 시 {"name": "brown", "age": 20} 데이터를 응답할 수 있도록 설정하세요.
-        return null;
+        return new Person("brown", 20);
     }
 }
