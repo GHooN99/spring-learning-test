@@ -11,7 +11,11 @@ import java.util.Optional;
 @Controller
 public class MemberController {
 
-    
+    @GetMapping("/")
+    public String index() {
+        return "static";
+    }
+
     @GetMapping("/static.html")
     public String staticPage() {
         return "static";
