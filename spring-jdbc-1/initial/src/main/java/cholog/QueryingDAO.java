@@ -31,7 +31,10 @@ public class QueryingDAO {
      */
     public int count() {
         //TODO : customers 디비에 포함되어있는 row가 몇개인지 확인하는 기능 구현
-        return this.jdbcTemplate.queryForObject("SELECT COUNT(*) FROM CUSTOMERS", Integer.class);
+        final String COUNT_QUERY = "SELECT COUNT(*) FROM CUSTOMERS";
+
+        Integer result = this.jdbcTemplate.queryForObject(COUNT_QUERY, Integer.class);
+        return result != null ? result : 0;
     }
 
     /**
