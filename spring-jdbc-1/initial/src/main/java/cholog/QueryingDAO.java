@@ -13,8 +13,7 @@ public class QueryingDAO {
     public QueryingDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-    /*
+    
     private final RowMapper<Customer> actorRowMapper = (resultSet, rowNum) -> {
         Customer customer = new Customer(
                 resultSet.getLong("id"),
@@ -23,8 +22,6 @@ public class QueryingDAO {
         );
         return customer;
     };
-    추후 rowMapper에 대해 학습해보고 이용해보기
-    */
 
     /**
      * public <T> T queryForObject(String sql, Class<T> requiredType)
@@ -51,9 +48,9 @@ public class QueryingDAO {
      * public <T> T queryForObject(String sql, RowMapper<T> rowMapper, @Nullable Object... args)
      */
     public Customer findCustomerById(Long id) {
-        String sql = "select id, first_name, last_name from customers where id = ?";
+        final String FIND_BY_ID_QUERY = "SELECT ID, FIRST_NAME, LAST_NAME FROM CUSTOMERS WHERE ID = ?";
         //TODO : 주어진 Id에 해당하는 customer를 객체로 반환
-        return null;
+        return this.jdbcTemplate.queryForObject(FIND_BY_ID_QUERY, this.actorRowMapper, id);
     }
 
     /**
