@@ -13,7 +13,7 @@ public class QueryingDAO {
     public QueryingDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    
+
     private final RowMapper<Customer> actorRowMapper = (resultSet, rowNum) -> {
         Customer customer = new Customer(
                 resultSet.getLong("id"),
@@ -59,7 +59,7 @@ public class QueryingDAO {
     public List<Customer> findAllCustomers() {
         String sql = "select id, first_name, last_name from customers";
         //TODO : 저장된 모든 Customers를 list형태로 반환
-        return null;
+        return this.jdbcTemplate.query(sql, this.actorRowMapper);
     }
 
     /**
@@ -68,6 +68,6 @@ public class QueryingDAO {
     public List<Customer> findCustomerByFirstName(String firstName) {
         String sql = "select id, first_name, last_name from customers where first_name = ?";
         //TODO : firstName을 기준으로 customer를 list형태로 반환
-        return null;
+        return this.jdbcTemplate.query(sql, this.actorRowMapper, firstName);
     }
 }
