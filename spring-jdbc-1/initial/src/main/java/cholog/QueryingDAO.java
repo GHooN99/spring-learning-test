@@ -42,7 +42,9 @@ public class QueryingDAO {
      */
     public String getLastName(Long id) {
         //TODO : 주어진 Id에 해당하는 customers의 lastName을 반환
-        return null;
+        final String GET_LAST_NAME_QUERY = "SELECT LAST_NAME FROM CUSTOMERS WHERE ID = ?";
+        String result = this.jdbcTemplate.queryForObject(GET_LAST_NAME_QUERY, String.class, id);
+        return result != null ? result : "";
     }
 
     /**
